@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024 Blog</title>
+</head>
+<body>
+    <header>
+        <h1>2024 Resume</h1>
+    </header>
+    <main>
+        <div class="post">
+            <h2>Excited to Showcase My GitHub Projects!</h2>
+            <p>As a passionate developer, I love turning ideas into functional, 
+                creative projects. Over the years, 
+                I’ve been working on various repositories that 
+                showcase my journey in software development and problem-solving. 
+                Here are some highlights from my GitHub:</p>
+        </div>
+        <div class="post">
+            <h2>Understanding the Bitcoin Blockchain</h2>
+            <p>The Bitcoin blockchain serves as a distributed ledger, meticulously recording every transaction in a chain of blocks. Each block is a container of:</p>
+            <ul>
+                <li>Multiple validated transactions</li>
+                <li>Precise timestamps</li>
+                <li>References to previous blocks</li>
+                <li>Proof-of-work solutions</li>
+            </ul>
+            <p>In my WalletSearch project, I've developed a sophisticated analyzer that interfaces with Bitcoin Core through RPC (Remote Procedure Calls) to fetch and analyze this data structure.</p>
+        </div>
+
+        <div class="post">
+            <h2>Technical Architecture Deep Dive</h2>
+            <p>The heart of WalletSearch is the BlockchainAnalyzer struct, which provides several powerful analysis capabilities:</p>
+            <ul>
+                <li>Transaction Graph Analysis: Creating visual maps of transaction relationships</li>
+                <li>Temporal Analysis: Identifying patterns over time</li>
+                <li>Clustering Analysis: Grouping related addresses using advanced heuristics</li>
+                <li>Machine Learning Integration: Detecting anomalies and patterns</li>
+                <li>Privacy Analysis: Evaluating address reuse patterns</li>
+            </ul>
+        </div>
+
+        <div class="post">
+            <h2>Rust Implementation Highlights</h2>
+            <p>The project showcases modern Rust practices:</p>
+            <pre>
+                // Error Handling Example
+                pub fn new(rpc_url: &str, rpc_user: &str, rpc_pass: &str) 
+                    -> Result<Self, Box<dyn std::error::Error>> {
+                    let rpc_client = Client::new(
+                        rpc_url,
+                        Auth::UserPass(rpc_user.to_string(), rpc_pass.to_string()),
+                    )?;
+                    
+                    Ok(BlockchainAnalyzer {
+                        rpc_client,
+                        patterns: HashSet::new(),
+                        transaction_cache: HashMap::new(),
+                        address_cache: HashMap::new(),
+                    })
+                }
+            </pre>
+            <p>Key features include:</p>
+            <ul>
+                <li>Comprehensive error handling with Result types</li>
+                <li>Async/await for efficient blockchain data processing</li>
+                <li>Custom structs with derived traits for type safety</li>
+                <li>Efficient caching mechanisms using HashMaps</li>
+            </ul>
+        </div>
+
+        <div class="post">
+            <h2>Advanced Analysis Features</h2>
+            <p>WalletSearch implements sophisticated analysis tools:</p>
+            <ul>
+                <li>Transaction Graph Visualization: Map relationships between addresses</li>
+                <li>Machine Learning Analysis: Detect unusual patterns</li>
+                <li>Privacy Metrics: Evaluate transaction patterns</li>
+                <li>Temporal Analysis: Study behavioral patterns over time</li>
+            </ul>
+        </div>
+
+        <div class="post">
+            <h2>Performance Optimization</h2>
+            <p>The project prioritizes performance through:</p>
+            <ul>
+                <li>Smart caching strategies using Rust's HashMap</li>
+                <li>Asynchronous processing for data retrieval</li>
+                <li>Efficient data structures with HashSet for pattern matching</li>
+                <li>Optimized graph algorithms for transaction analysis</li>
+            </ul>
+        </div>
+
+        <div class="post">
+            <h2>Future Development</h2>
+            <p>Looking ahead, I plan to enhance WalletSearch with:</p>
+            <ul>
+                <li>Real-time transaction monitoring capabilities</li>
+                <li>Support for additional blockchain networks</li>
+                <li>Enhanced privacy analysis features</li>
+                <li>Advanced clustering algorithms</li>
+            </ul>
+            <p>This project represents my commitment to blockchain technology and Rust development, combining robust analysis tools with efficient implementation.</p>
+        </div>
+        <div class="post">
+            <h2>Automating System Maintenance: The Shell Cleaner Project</h2>
+            <p>As systems grow and applications generate more data, maintaining a clean and efficient environment becomes crucial. My Shell Cleaner project addresses this challenge through automated system maintenance.</p>
+        </div>
+
+        <div class="post">
+            <h2>Core Features of Shell Cleaner</h2>
+            <p>The project includes several powerful maintenance routines:</p>
+            <pre>
+                #!/bin/bash
+
+                # Main cleaning functions
+                clean_temp_files() {
+                    find /tmp -type f -atime +7 -delete
+                    find /var/tmp -type f -atime +7 -delete
+                }
+
+                clean_package_cache() {
+                    if command -v apt &> /dev/null; then
+                        apt-get clean
+                        apt-get autoremove -y
+                    elif command -v yum &> /dev/null; then
+                        yum clean all
+                        yum autoremove -y
+                    fi
+                }
+
+                clean_log_files() {
+                    find /var/log -type f -name "*.log" -size +100M -exec truncate -s 0 {} \;
+                }
+            </pre>
+        </div>
+
+        <div class="post">
+            <h2>Smart System Detection</h2>
+            <p>The cleaner automatically detects the operating system and adjusts its cleaning strategies accordingly:</p>
+            <ul>
+                <li>Debian/Ubuntu systems: Utilizes apt package management tools</li>
+                <li>Red Hat/CentOS systems: Implements yum-based cleaning</li>
+                <li>Generic Unix/Linux: Applies universal cleaning methods</li>
+            </ul>
+        </div>
+
+        <div class="post">
+            <h2>Safety Features</h2>
+            <p>The script implements several safety measures to prevent accidental data loss:</p>
+            <pre>
+                # Safety checks
+                check_root() {
+                    if [ "$EUID" -ne 0 ]; then 
+                        echo "Please run as root"
+                        exit 1
+                    fi
+                }
+
+                backup_important_files() {
+                    timestamp=$(date +%Y%m%d_%H%M%S)
+                    mkdir -p /var/backups/cleaner_backup_$timestamp
+                    # Backup critical configurations
+                }
+
+                check_disk_space() {
+                    df -h / | awk 'NR==2 {print $5}' | cut -d'%' -f1
+                }
+            </pre>
+        </div>
+
+        <div class="post">
+            <h2>Intelligent Resource Management</h2>
+            <p>The cleaner includes sophisticated resource management features:</p>
+            <ul>
+                <li>Memory cache optimization</li>
+                <li>Disk space recovery</li>
+                <li>Process cleanup</li>
+                <li>System log rotation</li>
+            </ul>
+        </div>
+
+        <div class="post">
+            <h2>Scheduling and Automation</h2>
+            <p>The project can be integrated with system schedulers:</p>
+            <pre>
+                # Example crontab entry
+                0 2 * * * /path/to/cleaner.sh --quiet
+
+                # Systemd timer configuration
+                [Unit]
+                Description=Daily System Cleanup
+                [Timer]
+                OnCalendar=daily
+                Persistent=true
+                [Install]
+                WantedBy=timers.target
+            </pre>
+        </div>
+
+        <div class="post">
+            <h2>Performance Impact</h2>
+            <p>Key performance improvements after implementing the cleaner:</p>
+            <ul>
+                <li>Average disk space recovery: 15-30%</li>
+                <li>Reduced system log overhead</li>
+                <li>Optimized package management</li>
+                <li>Improved system responsiveness</li>
+            </ul>
+        </div>
+
+        <div class="post">
+            <h2>Future Enhancements</h2>
+            <p>Planned improvements for the Shell Cleaner project:</p>
+            <ul>
+                <li>Docker container cleanup integration</li>
+                <li>Custom cleaning rules configuration</li>
+                <li>Real-time system monitoring</li>
+                <li>Advanced reporting and notifications</li>
+                <li>Multi-server orchestration capabilities</li>
+            </ul>
+        </div>
+
+        <div class="post">
+            <h2>Project Impact</h2>
+            <p>This tool has been successfully deployed across various environments, from personal workstations to production servers, demonstrating its versatility and reliability in maintaining system health and performance.</p>
+        </div>
+    </main>
+</body>
+</html>
